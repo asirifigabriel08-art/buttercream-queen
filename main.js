@@ -88,7 +88,21 @@
   const grid = $('#cake-grid'), filters = $('#filters');
   const cats = ['All', ...new Set(cakes.map(c => c.c))];
   filters.innerHTML = cats.map((c, i) => `<button type="button" class="${i ? '' : 'active'}" aria-pressed="${!i}" data-c="${c}">${c}</button>`).join('');
-  const render = cat => { grid.innerHTML = cakes.filter(c => cat === 'All' || c.c === cat).map(c => card(c, c.c)).join(''); };
+  const mobile = matchMedia('(max-width: 699px)');
+  let curCat = 'All', expanded = false;
+  const render = cat => {
+    if (cat !== curCat) expanded = false;
+    curCat = cat;
+    const all = cakes.filter(c => cat === 'All' || c.c === cat);
+    const shown = mobile.matches && !expanded ? all.slice(0, 6) : all;
+    grid.innerHTML = shown.map(c => card(c, c.c)).join('');
+    more.hidden = shown.length >= all.length;
+  };
+  const more = document.createElement('button');
+  more.type = 'button'; more.className = 'btn outline more-btn'; more.textContent = 'Show more cakes'; more.hidden = true;
+  grid.after(more);
+  more.addEventListener('click', () => { expanded = true; render(curCat); });
+  mobile.addEventListener('change', () => render(curCat));
   render('All');
   filters.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;

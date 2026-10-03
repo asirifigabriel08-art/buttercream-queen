@@ -288,3 +288,6 @@ footer p{color:#f3e2c8}
 #cart input{padding:.6rem .8rem;font-size:.9rem}
 #cart-status{font-size:.82rem;color:var(--caramel);margin:0 0 .6rem;min-height:1rem}
 .cart-actions .btn:disabled{opacity:.5;cursor:not-allowed}
+
+.more-btn{display:block;margin:2rem auto 0}
+.more-btn[hidden]{display:none}
