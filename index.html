@@ -8,7 +8,7 @@
   <meta property="og:title" content="Buttercream Queen | Luxury Cake Design House" />
   <meta property="og:description" content="Luxury cake artistry, floral design and destination celebrations crafted with intention." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#f6dfe6" />
+  <meta name="theme-color" content="#f7ecdd" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Poppins:wght@300;400;500" rel="stylesheet" />
@@ -26,23 +26,24 @@
   <header id="header">
     <a href="#top" class="logo" aria-label="Buttercream Queen home"><span class="mono">BQ</span><span class="logo-text">BUTTERCREAM QUEEN</span></a>
     <nav id="nav" aria-label="Primary">
-      <a href="#top">Home</a><a href="#about">About</a><a href="#cakes">Cakes</a><a href="#weddings">Weddings</a>
-      <a href="#destination">Destination</a><a href="#journal">Journal</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+      <a href="#cakes">Cakes</a><a href="#weddings">Weddings</a><a href="#destination">Destination</a><a href="#about">Our Story</a><a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="inquire">Inquire</a>
+    <a href="#contact" class="inquire">Reserve a Cake</a>
+    <button id="cart-btn" class="cart-btn" type="button" aria-label="Open my order list" aria-controls="cart" aria-expanded="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-label">My Order</span> <span id="cart-count">0</span></button>
     <button id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu</button>
   </header>
 
   <main id="top">
     <section class="hero">
+      <span class="spark" style="left:18%;top:30%"></span><span class="spark" style="left:60%;top:24%;animation-delay:.8s"></span><span class="spark" style="left:84%;top:70%;animation-delay:1.6s"></span><span class="spark" style="left:38%;top:82%;animation-delay:2.2s"></span>
       <span class="pearl" style="left:8%;top:22%"></span><span class="pearl" style="left:52%;top:16%"></span>
       <span class="pearl" style="left:46%;top:78%"></span><span class="pearl" style="left:92%;top:60%"></span>
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <p class="label">Luxury Cake Design House</p>
-          <h1>The art of cake, <em>elevated.</em></h1>
-          <p class="lead">Luxury cake artistry, floral design and destination celebrations crafted with intention.</p>
-          <div class="cta-row"><a class="btn" href="#cakes">Explore the Collection</a><a class="btn outline" href="#contact">Begin Your Experience</a></div>
+          <h1>Warm. Buttery. <em>Yours.</em></h1>
+          <p class="lead">Hand-finished cakes and florals for the moments you never want to forget.</p>
+          <div class="cta-row"><a class="btn" href="#contact">Reserve a Cake</a><a class="btn outline" href="#picks">See Baker's Picks</a></div>
           <ul class="hero-points" aria-label="Highlights">
             <li>Award-winning designer</li>
             <li>Cake florist</li>
@@ -60,22 +61,32 @@
 
     <section class="wrap section intro">
       <p class="label">The House</p>
-      <h2 class="big reveal">Buttercream Queen creates cakes that transcend dessert and become art.</h2>
-      <p class="lead reveal">Designed. Sculpted. Crafted. Styled. Floral. Bespoke. Made to be remembered.</p>
+      <h2 class="big reveal">Bite into bliss.</h2>
+      <p class="lead reveal">Sculpted. Styled. Sweet. Every cake is made to be admired, then devoured.</p>
     </section>
 
     <section class="wrap feature-band" aria-label="What defines the house">
       <div class="stats-grid reveal">
-        <div class="stat-block"><strong>Luxury</strong><span>Cake artistry</span></div>
-        <div class="stat-block"><strong>Floral</strong><span>Editorial styling</span></div>
-        <div class="stat-block"><strong>Destination</strong><span>Celebrations anywhere</span></div>
-        <div class="stat-block"><strong>Bespoke</strong><span>Personal by design</span></div>
+        <div class="stat-block"><strong>Silky</strong><span>Buttercream</span></div>
+        <div class="stat-block"><strong>Fresh</strong><span>Real flowers</span></div>
+        <div class="stat-block"><strong>Anywhere</strong><span>We travel for cake</span></div>
+        <div class="stat-block"><strong>Yours</strong><span>Made to order</span></div>
+      </div>
+    </section>
+
+    <section id="picks-section" class="section picks">
+      <div class="wrap">
+        <div class="picks-head">
+          <div><p class="label">Baker's Picks</p><h2 class="reveal">Straight from the studio.</h2></div>
+          <div class="picks-nav"><button type="button" id="picks-prev" aria-label="Previous picks">&larr;</button><button type="button" id="picks-next" aria-label="Next picks">&rarr;</button></div>
+        </div>
+        <div class="carousel" id="picks" tabindex="0" aria-label="Baker's Picks carousel"></div>
       </div>
     </section>
 
     <section id="cakes" class="wrap section">
       <p class="label">Portfolio</p>
-      <h2 class="reveal">The Collection</h2>
+      <h2 class="reveal">Pick your indulgence.</h2>
       <div class="filters" role="group" aria-label="Filter cakes" id="filters"></div>
       <div class="grid" id="cake-grid"></div>
       <div class="ig-cta reveal">
@@ -88,10 +99,11 @@
       <div class="wrap two">
         <div class="photo founder-photo"><img src="assets/georgina-bart-williams.png" alt="Georgina Bart-Williams in her chef whites" width="768" height="1080" loading="lazy" /></div>
         <div class="reveal">
-          <p class="label">Founder · CEO · Cake Florist · Destination Cake Designer</p>
-          <h2 class="big">Georgina Bart-Williams</h2>
-          <p class="quote">Not simply a baker: a cake artist, cake florist and destination cake designer.</p>
-          <p>Georgina is the founder, CEO and creative director of Buttercream Queen. Every cake is approached as a piece of design: sculpted, styled and finished by hand around the people and the place it is made for.</p>
+          <p class="label">The Founder</p>
+          <h2 class="big">Meet Georgina</h2>
+          <p class="quote">&ldquo;Cake should make you stop, smile, then reach for a fork.&rdquo;</p>
+          <p>Georgina Bart-Williams started Buttercream Queen with one belief: a cake is a centerpiece and a memory. Today she sculpts, styles and flowers every design by hand, for weddings, milestones and destination celebrations.</p>
+          <svg class="signature" viewBox="0 0 260 70" role="img" aria-label="Georgina signature"><text x="4" y="46">Georgina</text><path d="M6 60 C70 70 150 50 250 58" /></svg>
           <p class="cta-row"><a class="btn outline" href="#contact">Work With Georgina</a></p>
         </div>
       </div>
@@ -111,8 +123,8 @@
       <div class="wrap two">
         <div class="reveal">
           <p class="label">Destination Cake Design</p>
-          <h2 class="big">Bespoke cake design for extraordinary celebrations.</h2>
-          <p>Resorts, villas, coastal celebrations and elegant hotels: cake artistry designed around where you celebrate.</p>
+          <h2 class="big">Cake with a view.</h2>
+          <p>Resorts, villas, beaches. We design the cake around where you celebrate.</p>
           <p class="cta-row"><a class="btn outline" href="#contact">Plan Your Destination Cake</a></p>
         </div>
         <div class="photo wide"><img src="assets/cakes/destination-1.jpg" alt="Tiered cake finished with fresh berries and mint" width="1000" height="1250" loading="lazy" /></div>
@@ -121,7 +133,7 @@
 
     <section id="weddings" class="wrap section">
       <p class="label">The Wedding Experience</p>
-      <h2 class="reveal">A centerpiece designed for you.</h2>
+      <h2 class="reveal">Made for your big day.</h2>
       <ol class="steps">
         <li class="reveal"><b>01</b><h3>Discover</h3><p>A conversation about your celebration and setting.</p></li>
         <li class="reveal"><b>02</b><h3>Design</h3><p>Your concept drawn, refined and considered.</p></li>
@@ -145,17 +157,17 @@
 
     <section class="finale section center">
       <div class="wrap">
-        <h2 class="big reveal">Your celebration deserves a masterpiece.</h2>
-        <p class="reveal">Bespoke luxury cake design, created around your story, your florals and your setting.</p>
-        <a class="btn light" href="#contact">Begin Your Inquiry</a>
+        <h2 class="big reveal">Ready to taste the magic?</h2>
+        <p class="reveal">Tell us the day. We'll bring the cake.</p>
+        <a class="btn light" href="#contact">Reserve a Cake</a>
       </div>
     </section>
 
     <section id="contact" class="wrap section two">
       <div class="reveal">
         <p class="label">Inquire</p>
-        <h2 class="big">Every extraordinary celebration begins with a conversation.</h2>
-        <p>Tell us about your celebration using the form and the studio will respond personally to discuss your design.</p>
+        <h2 class="big">Let's make something delicious.</h2>
+        <p>Share your date and dream. Georgina replies personally.</p>
         <div class="cta-row">
           <a class="btn wa" href="https://wa.me/233244834478?text=Hello%20Buttercream%20Queen%2C%20I%27d%20like%20to%20inquire%20about%20a%20cake." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
           <a class="btn outline" href="https://www.instagram.com/buttercreamqueen_ghana/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -187,6 +199,11 @@
   <footer>
     <p class="brand">BUTTERCREAM QUEEN</p>
     <p class="label">Georgina Bart-Williams · Cake Florist &amp; Destination Cake Designer</p>
+    <form class="news" id="news" novalidate>
+      <label for="n-email">Join the list for new designs and booking dates</label>
+      <div class="news-row"><input id="n-email" type="email" autocomplete="email" placeholder="Your email" /><button class="btn" type="submit">Subscribe</button></div>
+      <small id="n-status" role="status" aria-live="polite"></small>
+    </form>
     <p class="social"><a href="https://www.instagram.com/buttercreamqueen_ghana/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://wa.me/233244834478" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
     <p class="small">© <span id="year"></span> Buttercream Queen. All rights reserved.</p>
   </footer>
@@ -195,6 +212,24 @@
     <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M16.04 3C9.4 3 4 8.38 4 15c0 2.12.56 4.18 1.62 6L4 29l8.2-1.6A12 12 0 0 0 16.04 27C22.66 27 28 21.62 28 15S22.66 3 16.04 3zm0 21.8c-1.9 0-3.74-.5-5.36-1.46l-.38-.23-4.86.95.98-4.7-.25-.4A9.7 9.7 0 0 1 6.3 15c0-5.34 4.4-9.7 9.74-9.7 5.36 0 9.66 4.36 9.66 9.7s-4.3 9.8-9.66 9.8zm5.3-7.3c-.3-.14-1.72-.84-1.98-.94-.27-.1-.46-.14-.66.14-.2.3-.76.94-.93 1.13-.17.2-.34.22-.63.08-.3-.14-1.24-.45-2.36-1.45-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.45.13-.6.13-.13.3-.34.44-.5.14-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.14-.67-1.6-.9-2.2-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.03 1-1.03 2.45s1.06 2.84 1.2 3.04c.15.2 2.08 3.2 5.04 4.48.7.3 1.25.48 1.68.62.7.22 1.35.2 1.86.12.57-.08 1.72-.7 1.97-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.2-.57-.34z"/></svg>
   </a>
 
+  <aside id="cart" aria-label="My order list" hidden>
+    <div class="cart-head"><h2>My Order Waitlist</h2><button type="button" id="cart-close" aria-label="Close">&times;</button></div>
+    <p class="cart-intro">Add anything you'd like, a design from the site or your own idea. Join the waitlist and Georgina will confirm on WhatsApp.</p>
+    <ul id="cart-list"></ul>
+    <p id="cart-empty">Nothing here yet. Add a design or type your own idea below.</p>
+    <div class="cart-custom"><input id="cart-custom" type="text" maxlength="120" placeholder="Something else? e.g. 3-tier pink wedding cake" aria-label="Add your own item" /><button type="button" id="cart-custom-add">Add</button></div>
+    <div class="cart-fields">
+      <input id="cart-name" type="text" autocomplete="name" placeholder="Your name *" aria-label="Your name" />
+      <input id="cart-phone" type="tel" autocomplete="tel" placeholder="Phone / WhatsApp" aria-label="Phone" />
+      <input id="cart-date" type="date" aria-label="Date needed" />
+    </div>
+    <p id="cart-status" role="status" aria-live="polite"></p>
+    <div class="cart-actions">
+      <button class="btn wa" id="cart-wa" type="button">Join the Waitlist</button>
+      <a class="btn outline" id="cart-form" href="#contact">Use the full inquiry form</a>
+    </div>
+  </aside>
+  <div class="mobile-cta"><a class="btn" href="#contact">Reserve a Cake</a></div>
   <div id="modal" role="dialog" aria-modal="true" aria-label="Cake details" hidden></div>
   <script src="main.js"></script>
 </body>

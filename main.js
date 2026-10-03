@@ -78,7 +78,13 @@
   addEventListener('resize', () => { if (innerWidth >= 1100) setMenu(false); });
 
   // cards
-  const card = (x, tag) => `<button class="card" type="button" data-t="${x.t}"><div class="ph"><img src="${x.src}" alt="${x.a}" loading="lazy" width="600" height="750"></div><div class="body"><span class="tag">${tag}</span><h3>${x.t}</h3><p>${x.d}</p></div></button>`;
+  const card = (x, tag) => `<article class="card" data-t="${x.t}"><button class="open" type="button"><div class="ph"><span class="badge">Made to order</span><img src="${x.src}" alt="${x.a}" loading="lazy" width="600" height="750"></div><div class="body"><span class="tag">${tag}</span><h3>${x.t}</h3><p>${x.d}</p></div></button><button class="add" type="button" aria-label="Add ${x.t} to my order">+ Add to order</button></article>`;
+  const picks = ['The Atelier Rose', 'Blush Garden', 'Champagne Silk', 'Coastal Dream', 'The Sculpted Muse', 'Velvet Muse', 'Cherry Cloud'];
+  const track = $('#picks');
+  track.innerHTML = picks.map(t => cakes.find(c => c.t === t)).map(c => card(c, c.c)).join('');
+  const step = () => track.firstElementChild.getBoundingClientRect().width + 20;
+  $('#picks-prev').addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  $('#picks-next').addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
   const grid = $('#cake-grid'), filters = $('#filters');
   const cats = ['All', ...new Set(cakes.map(c => c.c))];
   filters.innerHTML = cats.map((c, i) => `<button type="button" class="${i ? '' : 'active'}" aria-pressed="${!i}" data-c="${c}">${c}</button>`).join('');
@@ -96,21 +102,96 @@
   // modal
   const modal = $('#modal'); let lastFocus = null;
   const closeModal = () => { modal.hidden = true; document.body.classList.remove('lock'); lastFocus && lastFocus.focus(); };
-  grid.addEventListener('click', e => {
-    const el = e.target.closest('.card'); if (!el) return;
-    const x = cakes.find(c => c.t === el.dataset.t); lastFocus = el;
+  document.addEventListener('click', e => {
+    const add = e.target.closest('.add');
+    if (add) { addItem(add.closest('.card').dataset.t, add); return; }
+    const open = e.target.closest('.open'); if (!open) return;
+    const el = open.closest('.card');
+    const x = cakes.find(c => c.t === el.dataset.t); lastFocus = open;
     modal.innerHTML = `<div class="m-box"><button class="m-close" type="button" aria-label="Close">×</button><img src="${x.src}" alt="${x.a}"><div class="m-info"><p class="label">${x.c}</p><h2>${x.t}</h2><p>${x.d}</p><a class="btn" href="#contact" data-close>Inquire About This Design</a></div></div>`;
     modal.hidden = false; document.body.classList.add('lock'); $('.m-close', modal).focus();
   });
   modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('.m-close') || e.target.closest('[data-close]')) closeModal(); });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { if (!modal.hidden) closeModal(); else if (nav.classList.contains('open')) { setMenu(false); btn.focus(); } }
+    if (e.key === 'Escape') { if (!cart.hidden) setCart(false); else if (!modal.hidden) closeModal(); else if (nav.classList.contains('open')) { setMenu(false); btn.focus(); } }
     if (e.key === 'Tab' && !modal.hidden) {
       const f = $$('button,a[href]', modal); if (!f.length) return;
       const first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
+  });
+
+  // order list (mini cart)
+  const WA = '233244834478', KEY = 'bq-order';
+  let order = []; try { order = JSON.parse(localStorage.getItem(KEY)) || []; } catch (_) { }
+  const cart = $('#cart'), cartBtn = $('#cart-btn'), list = $('#cart-list');
+  const saveOrder = () => { try { localStorage.setItem(KEY, JSON.stringify(order)); } catch (_) { } };
+  const renderCart = () => {
+    $('#cart-count').textContent = order.length;
+    cartBtn.classList.toggle('has-items', order.length > 0);
+    list.innerHTML = order.map((t, i) => `<li><span>${t}</span><button type="button" data-rm="${i}" aria-label="Remove ${t}">&times;</button></li>`).join('');
+    $('#cart-empty').hidden = order.length > 0;
+    $('#cart-wa').disabled = !order.length;
+  };
+  const setCart = open => { cart.hidden = !open; cartBtn.setAttribute('aria-expanded', open); };
+  const addItem = (t, el) => {
+    if (!order.includes(t)) order.push(t);
+    saveOrder(); renderCart();
+    if (el) { el.textContent = 'Yum. Added \u2713'; setTimeout(() => el.textContent = '+ Add to order', 1500); }
+    cartBtn.classList.remove('pop'); void cartBtn.offsetWidth; cartBtn.classList.add('pop');
+    const img = el && el.closest('.card').querySelector('img');
+    if (img && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const a = img.getBoundingClientRect(), b = cartBtn.getBoundingClientRect();
+      const fly = document.createElement('img');
+      fly.src = img.src; fly.alt = ''; fly.className = 'fly';
+      fly.style.cssText = `left:${a.left}px;top:${a.top}px;width:${a.width}px;height:${a.height}px`;
+      document.body.appendChild(fly);
+      requestAnimationFrame(() => {
+        fly.style.transform = `translate(${b.left + b.width / 2 - a.left - a.width / 2}px,${b.top + b.height / 2 - a.top - a.height / 2}px) scale(.08)`;
+        fly.style.opacity = '.4';
+      });
+      setTimeout(() => fly.remove(), 800);
+    }
+    cartBtn.classList.toggle('has-items', order.length > 0);
+  };
+  cartBtn.addEventListener('click', () => setCart(cart.hidden));
+  $('#cart-close').addEventListener('click', () => setCart(false));
+  list.addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (!b) return; order.splice(+b.dataset.rm, 1); saveOrder(); renderCart(); });
+  const addCustom = () => {
+    const inp = $('#cart-custom'), v = inp.value.trim();
+    if (!v) return;
+    order.push(v); inp.value = ''; saveOrder(); renderCart();
+  };
+  $('#cart-custom-add').addEventListener('click', addCustom);
+  $('#cart-custom').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addCustom(); } });
+  $('#cart-wa').addEventListener('click', () => {
+    const name = $('#cart-name').value.trim(), st = $('#cart-status');
+    if (!name) { st.textContent = 'Please enter your name.'; $('#cart-name').focus(); return; }
+    const phone = $('#cart-phone').value.trim(), date = $('#cart-date').value;
+    const msg = `Hello Buttercream Queen, please add me to the order waitlist.\n\nName: ${name}${phone ? '\nPhone: ' + phone : ''}${date ? '\nDate needed: ' + date : ''}\n\nOrder:\n${order.map(t => '- ' + t).join('\n')}`;
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    st.textContent = 'You are on the waitlist. Send the WhatsApp message to confirm.';
+    order = []; saveOrder(); renderCart();
+  });
+  $('#cart-form').addEventListener('click', () => {
+    const m = $('#f-message'); if (order.length) m.value = `I'm interested in: ${order.join(', ')}.`;
+    setCart(false);
+  });
+  renderCart();
+
+  // hero parallax
+  const heroImg = $('.featured-card img');
+  if (heroImg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let tick = false;
+    addEventListener('scroll', () => { if (tick || scrollY > 900) return; tick = true; requestAnimationFrame(() => { heroImg.style.transform = `translateY(${scrollY * .06}px) scale(1.08)`; tick = false; }); }, { passive: true });
+  }
+
+  // newsletter (front-end only)
+  $('#news').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = $('#n-email').value.trim();
+    $('#n-status').textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Thank you. You are on the list.' : 'Please enter a valid email.';
   });
 
   // reveal
