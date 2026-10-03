@@ -440,3 +440,13 @@ footer{background:linear-gradient(180deg,#3a1428,#26091a)}
 @media(min-width:560px){.bf-grid{grid-template-columns:1fr 1fr}.bf-full{grid-column:1/-1}}
 .bf-done{width:100%;margin-top:1.2rem;padding:1rem}
 #book-status{margin:.9rem 0 0;color:var(--plum);font-size:.9rem}
+
+/* friendlier booking form */
+.bf-sub{margin-bottom:1rem}
+#book-form input,#book-form select,#book-form textarea{padding:.85rem 1rem;font-size:1rem;background:#fff}
+#book-form label{margin-top:.9rem}
+#book-success{text-align:center;padding:1rem 0}
+#book-success p{max-width:26rem;margin:0 auto 1.4rem}
+.ok-mark{width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;display:grid;place-items:center;font-size:2rem;color:#fff;background:linear-gradient(135deg,#1fa855,#128c7e);animation:cmrise .5s}
+#book-form.sent>:not(.cm-close):not(#book-success){display:none}
+.bf-done:disabled{opacity:.7;cursor:wait}

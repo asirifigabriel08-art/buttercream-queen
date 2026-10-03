@@ -173,6 +173,8 @@
   });
 
   // class booking form -> WhatsApp
+  // Paste the owner's CallMeBot API key below to send bookings automatically.
+  const AUTO = { phone: '233244834478', apikey: '' };
   const bmodal = $('#book-modal'), bform = $('#book-form'), bstatus = $('#book-status');
   const setBook = open => { bmodal.hidden = !open; if (open) { bmodal.scrollTop = 0; bstatus.textContent = ''; } };
   document.addEventListener('click', e => {
@@ -197,10 +199,20 @@
     if (v('date')) lines.push(`Preferred date: ${v('date')}`);
     lines.push(`People: ${v('people')}`);
     if (v('note')) lines.push(`Note: ${v('note')}`);
-    window.open(`https://wa.me/233244834478?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
-    bstatus.textContent = 'WhatsApp is opening with your details. Press Send there to finish your booking.';
-    bform.reset(); $('#b-people').value = 1;
+    const text = lines.join('\n');
+    const done = $('.bf-done', bform);
+    const success = () => { bform.classList.add('sent'); $('#book-success').hidden = false; bform.reset(); $('#b-people').value = 1; };
+    const viaWhatsApp = () => {
+      window.open(`https://wa.me/${AUTO.phone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+      bstatus.textContent = 'WhatsApp is opening with your details. Press Send there to finish your booking.';
+    };
+    if (!AUTO.apikey) { viaWhatsApp(); return; }
+    done.disabled = true; done.textContent = 'Sending...';
+    fetch(`https://api.callmebot.com/whatsapp.php?phone=${AUTO.phone}&text=${encodeURIComponent(text)}&apikey=${AUTO.apikey}`, { mode: 'no-cors' })
+      .then(success).catch(viaWhatsApp)
+      .finally(() => { done.disabled = false; done.textContent = 'Done'; });
   });
+  $('#book-ok').addEventListener('click', () => { bform.classList.remove('sent'); $('#book-success').hidden = true; setBook(false); });
 
   // homepage tiles pre-select a category
   $$('.tile[data-cat]').forEach(t => t.addEventListener('click', () => {

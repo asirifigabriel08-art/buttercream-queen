@@ -226,6 +226,7 @@
       <button class="cm-close" type="button" id="book-close" aria-label="Close form">&times;</button>
       <p class="label">Book a Class</p>
       <h2>Reserve your seat</h2>
+      <p class="bf-sub">Tell us a little about you and we'll get back to you on WhatsApp.</p>
       <div class="bf-grid">
         <div class="bf-full"><label for="b-class">Class *</label><select id="b-class" name="class"><option>Beginner Class</option><option>Masterclass</option></select></div>
         <div><label for="b-name">Full name *</label><input id="b-name" name="name" autocomplete="name" /><small class="err" data-bf="name"></small></div>
@@ -235,8 +236,14 @@
         <div><label for="b-people">Number of people</label><input id="b-people" name="people" type="number" min="1" value="1" inputmode="numeric" /><small class="err" data-bf="people"></small></div>
         <div class="bf-full"><label for="b-note">Anything we should know?</label><textarea id="b-note" name="note" rows="3"></textarea></div>
       </div>
-      <button class="btn bf-done" type="submit">Done &mdash; send on WhatsApp</button>
+      <button class="btn bf-done" type="submit">Done</button>
       <p id="book-status" role="status" aria-live="polite"></p>
+      <div id="book-success" hidden>
+        <div class="ok-mark" aria-hidden="true">&#10003;</div>
+        <h2>Thank you!</h2>
+        <p>Your booking request has been sent. We'll message you on WhatsApp very soon to confirm your seat.</p>
+        <button class="btn" type="button" id="book-ok">Close</button>
+      </div>
     </form>
   </div>
   <aside id="cart" aria-label="My order list" hidden>
