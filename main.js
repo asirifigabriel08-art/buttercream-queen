@@ -136,6 +136,72 @@
     }
   });
 
+  // classes panel
+  const classes = [
+    { level: 'Beginner Class', title: 'Sweet Beginnings', tag: 'No experience needed', desc: 'Start from the very first layer. Learn the foundations of beautiful buttercream cakes in a relaxed, hands-on session and take home a cake you made yourself.',
+      learn: ['Baking and layering a stable cake', 'Silky buttercream, smooth and textured finishes', 'Piping rosettes, borders and shells', 'Simple floral and fruit decoration'],
+      imgs: [['couture-3', 'Raspberry rose cupcake'], ['celebration-2', 'Buttercream cake with cherries'], ['couture-1', 'Piped rosette cake'], ['floral-5', 'Daisy layer cake'], ['celebration-7', 'Sprinkle cake with candles'], ['couture-5', 'Bowl of pastel macarons']] },
+    { level: 'Masterclass', title: 'The Couture Masterclass', tag: 'For confident bakers', desc: 'Go further with the techniques behind tiered, floral and sculptural showpiece cakes. Work at a professional level and design cakes that stop a room.',
+      learn: ['Tiered cake structure and stacking', 'Hand-modelled sugar flowers and fresh florals', 'Ganache sculpting and drip finishes', 'Styling cakes for weddings and destinations'],
+      imgs: [['wedding-1', 'Tall tiered wedding cake'], ['wedding-3', 'Wedding cake covered in sugar flowers'], ['floral-1', 'Pink floral tiered cake'], ['sculptural-2', 'White chocolate drip cake'], ['wedding-5', 'Tiered cake with roses'], ['destination-1', 'Tiered cake with berries']] }
+  ];
+  const cmodal = $('#classes-modal');
+  $('#cm-list').innerHTML = classes.map((c, n) => {
+    return `<article class="cm-class${n % 2 ? ' rev' : ''}"><div class="cm-info"><span class="cm-badge">${c.level}</span><h3>${c.title}</h3><p class="cm-tag">${c.tag}</p><p>${c.desc}</p><ul>${c.learn.map(l => `<li>${l}</li>`).join('')}</ul><button class="btn" type="button" data-book="${c.level}">Book this class <span aria-hidden="true">&rarr;</span></button></div><div class="cm-gallery"><div class="cm-main"><img src="${C}${c.imgs[0][0]}.jpg" alt="${c.imgs[0][1]}"></div><div class="cm-thumbs">${c.imgs.map(([i, a], k) => `<button type="button" class="${k ? '' : 'on'}" data-src="${C}${i}.jpg" data-alt="${a}" aria-label="${a}"><img src="${C}${i}.jpg" alt="" loading="lazy"></button>`).join('')}</div></div></article>`;
+  }).join('');
+  $('#cm-list').addEventListener('click', e => {
+    const b = e.target.closest('.cm-thumbs button'); if (!b) return;
+    const g = b.closest('.cm-gallery'), main = $('.cm-main img', g);
+    $$('button', g).forEach(x => x.classList.toggle('on', x === b));
+    main.classList.add('swap');
+    setTimeout(() => { main.src = b.dataset.src; main.alt = b.dataset.alt; main.classList.remove('swap'); }, 180);
+  });
+  let clsFocus = null;
+  const setClasses = open => {
+    cmodal.hidden = !open;
+    document.body.classList.toggle('lock', open);
+    if (open) { clsFocus = document.activeElement; $('.cm-close', cmodal).focus(); cmodal.scrollTop = 0; $('.cm-sheet', cmodal).scrollTop = 0; }
+    else if (clsFocus) clsFocus.focus();
+  };
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-classes]')) { e.preventDefault(); setMenu(false); setClasses(true); }
+    else if (!cmodal.hidden && (e.target === cmodal || e.target.closest('.cm-close'))) setClasses(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (!bmodal.hidden) setBook(false); else if (!cmodal.hidden) setClasses(false);
+  });
+
+  // class booking form -> WhatsApp
+  const bmodal = $('#book-modal'), bform = $('#book-form'), bstatus = $('#book-status');
+  const setBook = open => { bmodal.hidden = !open; if (open) { bmodal.scrollTop = 0; bstatus.textContent = ''; } };
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-book]');
+    if (b) { $('#b-class').value = b.dataset.book; $$('[data-bf]', bform).forEach(s => s.textContent = ''); setBook(true); $('#b-name').focus(); return; }
+    if (e.target === bmodal || e.target.closest('#book-close')) setBook(false);
+  });
+  bform.addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(bform), v = k => (f.get(k) || '').toString().trim();
+    const errs = {
+      name: v('name') ? '' : 'Please enter your name.',
+      phone: /^[+\d][\d\s()-]{6,}$/.test(v('phone')) ? '' : 'Please enter a valid phone number.',
+      email: !v('email') || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email')) ? '' : 'Please enter a valid email.',
+      people: +v('people') >= 1 ? '' : 'Enter at least 1.'
+    };
+    let first = null;
+    Object.entries(errs).forEach(([k, m]) => { $(`[data-bf="${k}"]`, bform).textContent = m; if (m && !first) first = $(`[name="${k}"]`, bform); });
+    if (first) { first.focus(); return; }
+    const lines = [`Hello Buttercream Queen, I'd like to book a class.`, '', `Class: ${v('class')}`, `Name: ${v('name')}`, `Phone: ${v('phone')}`];
+    if (v('email')) lines.push(`Email: ${v('email')}`);
+    if (v('date')) lines.push(`Preferred date: ${v('date')}`);
+    lines.push(`People: ${v('people')}`);
+    if (v('note')) lines.push(`Note: ${v('note')}`);
+    window.open(`https://wa.me/233244834478?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+    bstatus.textContent = 'WhatsApp is opening with your details. Press Send there to finish your booking.';
+    bform.reset(); $('#b-people').value = 1;
+  });
+
   // homepage tiles pre-select a category
   $$('.tile[data-cat]').forEach(t => t.addEventListener('click', () => {
     const b = $(`button[data-c="${t.dataset.cat}"]`, filters); if (b) b.click();

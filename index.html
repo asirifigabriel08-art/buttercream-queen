@@ -26,7 +26,7 @@
   <header id="header">
     <a href="#top" class="logo" aria-label="Butter Cream Queen Ghana home"><svg class="crown" viewBox="0 0 24 14" width="22" height="13" aria-hidden="true" fill="currentColor"><path d="M2 13 0 3l6 4 6-7 6 7 6-4-2 10z"/></svg><span class="wordmark">Butter Cream Queen Ghana</span></a>
     <nav id="nav" aria-label="Primary">
-      <a href="#top">Home</a><a href="#cakes">Our Cakes</a><a href="#classes">Classes</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a href="#top">Home</a><a href="#cakes">Our Cakes</a><a href="#classes" data-classes>Classes</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
     <a href="#contact" class="inquire">Order a Cake <span aria-hidden="true">&rarr;</span></a>
     <button id="cart-btn" class="cart-btn" type="button" aria-label="Open my order list" aria-controls="cart" aria-expanded="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-label">My Order</span> <span id="cart-count">0</span></button>
@@ -42,7 +42,7 @@
           <span class="hero-rule"></span>
           <h1>Extraordinary cakes. Unforgettable celebrations.</h1>
           <p class="lead">Luxury cake artistry and inspiring classes in Ghana.</p>
-          <div class="cta-row"><a class="btn" href="#contact">Order a Cake <span aria-hidden="true">&rarr;</span></a><a class="btn outline" href="#classes">Explore Classes</a></div>
+          <div class="cta-row"><a class="btn" href="#contact">Order a Cake <span aria-hidden="true">&rarr;</span></a><a class="btn outline" href="#classes" data-classes>Explore Classes</a></div>
         </div>
       </div>
     </section>
@@ -52,13 +52,13 @@
     <section class="wrap tiles" aria-label="Explore">
       <a class="tile" href="#cakes" data-cat="Wedding Cakes"><img src="assets/cakes/wedding-1.jpg" alt="Tall tiered wedding cake with flowers" width="600" height="450" loading="lazy" /><span class="tile-bar">Wedding Cakes <i aria-hidden="true">&rarr;</i></span></a>
       <a class="tile" href="#cakes" data-cat="Luxury Celebration Cakes"><img src="assets/cakes/celebration-1.jpg" alt="Pink celebration cake" width="600" height="450" loading="lazy" /><span class="tile-bar">Celebration Cakes <i aria-hidden="true">&rarr;</i></span></a>
-      <a class="tile" href="#classes"><img class="tile-person" src="assets/georgina-bart-williams.png" alt="Georgina in her chef whites" width="600" height="450" loading="lazy" /><span class="tile-bar">Cake Masterclasses <i aria-hidden="true">&rarr;</i></span></a>
+      <a class="tile" href="#classes" data-classes><img class="tile-person" src="assets/georgina-bart-williams.png" alt="Georgina in her chef whites" width="600" height="450" loading="lazy" /><span class="tile-bar">Cake Masterclasses <i aria-hidden="true">&rarr;</i></span></a>
     </section>
 
     <section id="classes" class="classes-band">
       <div class="wrap classes-inner">
         <div><h2>Learn the art of exceptional cakes</h2><p>Practical skills. Creative techniques. Beautiful results.</p></div>
-        <a class="btn" href="https://wa.me/233244834478?text=Hello%2C%20I%27d%20like%20to%20know%20about%20your%20cake%20classes." target="_blank" rel="noopener noreferrer">Discover Our Classes <span aria-hidden="true">&rarr;</span></a>
+        <a class="btn" href="#classes" data-classes>Discover Our Classes <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
 
@@ -210,6 +210,35 @@
     <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M16.04 3C9.4 3 4 8.38 4 15c0 2.12.56 4.18 1.62 6L4 29l8.2-1.6A12 12 0 0 0 16.04 27C22.66 27 28 21.62 28 15S22.66 3 16.04 3zm0 21.8c-1.9 0-3.74-.5-5.36-1.46l-.38-.23-4.86.95.98-4.7-.25-.4A9.7 9.7 0 0 1 6.3 15c0-5.34 4.4-9.7 9.74-9.7 5.36 0 9.66 4.36 9.66 9.7s-4.3 9.8-9.66 9.8zm5.3-7.3c-.3-.14-1.72-.84-1.98-.94-.27-.1-.46-.14-.66.14-.2.3-.76.94-.93 1.13-.17.2-.34.22-.63.08-.3-.14-1.24-.45-2.36-1.45-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.45.13-.6.13-.13.3-.34.44-.5.14-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.14-.67-1.6-.9-2.2-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.03 1-1.03 2.45s1.06 2.84 1.2 3.04c.15.2 2.08 3.2 5.04 4.48.7.3 1.25.48 1.68.62.7.22 1.35.2 1.86.12.57-.08 1.72-.7 1.97-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.2-.57-.34z"/></svg>
   </a>
 
+  <div id="classes-modal" role="dialog" aria-modal="true" aria-label="Cake classes" hidden>
+    <div class="cm-sheet">
+      <button class="cm-close" type="button" aria-label="Close classes">&times;</button>
+      <header class="cm-head">
+        <p class="label">Butter Cream Queen Classes</p>
+        <h2>Learn the art of exceptional cakes</h2>
+        <p>Practical skills. Creative techniques. Beautiful results. Choose the class that fits you.</p>
+      </header>
+      <div id="cm-list"></div>
+    </div>
+  </div>
+  <div id="book-modal" role="dialog" aria-modal="true" aria-label="Book a class" hidden>
+    <form id="book-form" novalidate>
+      <button class="cm-close" type="button" id="book-close" aria-label="Close form">&times;</button>
+      <p class="label">Book a Class</p>
+      <h2>Reserve your seat</h2>
+      <div class="bf-grid">
+        <div class="bf-full"><label for="b-class">Class *</label><select id="b-class" name="class"><option>Beginner Class</option><option>Masterclass</option></select></div>
+        <div><label for="b-name">Full name *</label><input id="b-name" name="name" autocomplete="name" /><small class="err" data-bf="name"></small></div>
+        <div><label for="b-phone">Phone / WhatsApp *</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" /><small class="err" data-bf="phone"></small></div>
+        <div><label for="b-email">Email</label><input id="b-email" name="email" type="email" autocomplete="email" /><small class="err" data-bf="email"></small></div>
+        <div><label for="b-date">Preferred date</label><input id="b-date" name="date" type="date" /></div>
+        <div><label for="b-people">Number of people</label><input id="b-people" name="people" type="number" min="1" value="1" inputmode="numeric" /><small class="err" data-bf="people"></small></div>
+        <div class="bf-full"><label for="b-note">Anything we should know?</label><textarea id="b-note" name="note" rows="3"></textarea></div>
+      </div>
+      <button class="btn bf-done" type="submit">Done &mdash; send on WhatsApp</button>
+      <p id="book-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
   <aside id="cart" aria-label="My order list" hidden>
     <div class="cart-head"><h2>My Order Waitlist</h2><button type="button" id="cart-close" aria-label="Close">&times;</button></div>
     <p class="cart-intro">Add anything you'd like, a design from the site or your own idea. Join the waitlist and Georgina will confirm on WhatsApp.</p>
