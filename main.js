@@ -201,10 +201,13 @@
     if (v('note')) lines.push(`Note: ${v('note')}`);
     const text = lines.join('\n');
     const done = $('.bf-done', bform);
-    const success = () => { bform.classList.add('sent'); $('#book-success').hidden = false; bform.reset(); $('#b-people').value = 1; };
+    const success = () => { $('#book-msg').textContent = "Your booking request has been sent. We'll message you on WhatsApp very soon to confirm your seat."; $('#book-again').hidden = true; bform.classList.add('sent'); $('#book-success').hidden = false; bform.reset(); $('#b-people').value = 1; };
     const viaWhatsApp = () => {
-      window.open(`https://wa.me/${AUTO.phone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
-      bstatus.textContent = 'WhatsApp is opening with your details. Press Send there to finish your booking.';
+      const url = `https://wa.me/${AUTO.phone}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank', 'noopener');
+      $('#book-msg').textContent = 'WhatsApp has opened with your booking details. Press Send in WhatsApp to finish.';
+      const again = $('#book-again'); again.href = url; again.hidden = false;
+      bform.classList.add('sent'); $('#book-success').hidden = false; bform.reset(); $('#b-people').value = 1;
     };
     if (AUTO.web3formsKey) {
       done.disabled = true; done.textContent = 'Sending...';
