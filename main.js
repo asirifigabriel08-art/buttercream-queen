@@ -152,7 +152,7 @@
   const addItem = (t, el) => {
     if (!order.includes(t)) order.push(t);
     saveOrder(); renderCart();
-    if (el) { el.textContent = 'Yum. Added \u2713'; setTimeout(() => el.textContent = '+ Add to order', 1500); }
+    if (el) { el.textContent = 'Yum. Added \u2713'; setTimeout(() => el.textContent = '+ Add to order', 1500); if (window.bqFx) window.bqFx.added(el); }
     cartBtn.classList.remove('pop'); void cartBtn.offsetWidth; cartBtn.classList.add('pop');
     const img = el && el.closest('.card').querySelector('img');
     if (img && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -193,13 +193,6 @@
     setCart(false);
   });
   renderCart();
-
-  // hero parallax
-  const heroImg = $('.featured-card img');
-  if (heroImg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let tick = false;
-    addEventListener('scroll', () => { if (tick || scrollY > 900) return; tick = true; requestAnimationFrame(() => { heroImg.style.transform = `translateY(${scrollY * .06}px) scale(1.08)`; tick = false; }); }, { passive: true });
-  }
 
   // newsletter (front-end only)
   $('#news').addEventListener('submit', e => {
