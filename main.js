@@ -194,6 +194,11 @@
   });
   renderCart();
 
+  // instagram marquee
+  const igPics = ['wedding-1', 'floral-1', 'celebration-1', 'couture-4', 'destination-1', 'sculptural-1', 'wedding-3', 'celebration-4', 'couture-1', 'floral-3'];
+  const igSet = igPics.map(i => `<a href="https://www.instagram.com/buttercreamqueen_ghana/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img src="${C}${i}.jpg" alt="" loading="lazy" width="240" height="300"></a>`).join('');
+  $('#marquee').innerHTML = `<div class="marquee-track">${igSet}${igSet}</div>`;
+
   // newsletter (front-end only)
   $('#news').addEventListener('submit', e => {
     e.preventDefault();

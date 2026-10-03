@@ -314,3 +314,18 @@ footer p{color:#f3e2c8}
 .cart-btn .cart-label{background:none;min-width:0;height:auto;border-radius:0;font-size:inherit;color:inherit}
 
 .cart-btn{white-space:nowrap}
+
+/* instagram marquee */
+.ig-strip{background:var(--pink2);overflow:hidden}
+.ig-strip p{margin-inline:auto}
+.handle{color:var(--caramel);border-bottom:1px solid var(--gold)}
+.marquee{margin:2rem 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:1rem;width:max-content;animation:scrollx 50s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee a{flex:none;width:clamp(150px,18vw,220px);border-radius:14px;overflow:hidden;border:1px solid rgba(184,146,79,.4);transition:transform .35s,box-shadow .35s}
+.marquee a:hover{transform:scale(1.05) rotate(-1deg);box-shadow:0 0 0 1px var(--gold),0 20px 40px -18px rgba(168,102,44,.6)}
+.marquee img{width:100%;aspect-ratio:4/5;object-fit:cover}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+.marquee-track{gap:0}
+.marquee a{margin-right:1rem}
