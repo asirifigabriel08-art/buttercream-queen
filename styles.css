@@ -450,3 +450,57 @@ footer{background:linear-gradient(180deg,#3a1428,#26091a)}
 .ok-mark{width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;display:grid;place-items:center;font-size:2rem;color:#fff;background:linear-gradient(135deg,#1fa855,#128c7e);animation:cmrise .5s}
 #book-form.sent>:not(.cm-close):not(#book-success){display:none}
 .bf-done:disabled{opacity:.7;cursor:wait}
+
+/* mobile keeps the desktop composition */
+.tiles{grid-template-columns:repeat(3,1fr)}
+@media(max-width:899px){
+ .hero{min-height:400px}
+ .hero-photo{width:72%;opacity:1}
+ .hero-photo img{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%);object-position:62% 25%}
+ .hero-inner{padding-block:5.5rem 2rem}
+ .hero h1{font-size:clamp(1.55rem,6.2vw,2.2rem);max-width:15rem}
+ .hero .lead{font-size:.95rem;max-width:14rem;margin-top:.8rem}
+ .hero .cta-row{gap:.5rem;margin-top:1.1rem}
+ .hero .btn{padding:.6rem .9rem;font-size:.78rem}
+ .tiles{gap:.5rem}
+ .tile-bar{padding:.6rem .6rem;font-size:.82rem;gap:.2rem}
+ .tile img{aspect-ratio:3/4}
+ .classes-inner{flex-wrap:nowrap;gap:.8rem}
+ .classes-band{padding:1.6rem 0}
+ .classes-band h2{font-size:1.15rem}
+ .classes-band p{font-size:.78rem}
+ .classes-band .btn{padding:.6rem .8rem;font-size:.75rem;white-space:normal}
+ .grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+ .card h3{font-size:1rem}
+ .card p{font-size:.78rem}
+ .steps{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){.tagline span{font-size:.9rem}.tagline::before,.tagline::after{width:24px}}
+
+.hero .btn.outline{background:rgba(253,248,243,.85)}
+
+/* mobile layout polish */
+.cart-btn,#menu-btn{flex:none}
+@media(max-width:899px){
+ #header{gap:.5rem}
+ .logo{min-width:0;flex:1 1 auto}
+ .hero-photo{width:62%}
+ .hero h1{max-width:12.5rem}
+ .hero .lead{max-width:11.5rem}
+}
+@media(max-width:420px){
+ .wordmark{font-size:.8rem;white-space:normal;line-height:1.1;border-bottom:0}
+ .crown{width:16px}
+ .cart-btn{padding:.45rem .6rem}
+ #menu-btn{padding:.5rem .9rem;font-size:.65rem}
+}
+@media(max-width:899px){
+ .photo{max-width:250px}
+ .two{gap:1.8rem}
+ .section{padding:2.6rem 0}
+ .cm-thumbs{gap:.35rem}
+ .cm-sheet{padding:1.2rem}
+ .cm-main{border-width:4px}
+}
+
+@media(max-width:899px){.cm-head{padding-top:2.2rem}}

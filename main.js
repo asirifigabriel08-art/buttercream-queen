@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const C = 'assets/cakes/';
@@ -94,7 +94,7 @@
     if (cat !== curCat) expanded = false;
     curCat = cat;
     const all = cakes.filter(c => cat === 'All' || c.c === cat);
-    const shown = expanded ? all : all.slice(0, mobile.matches ? 6 : 8);
+    const shown = expanded ? all : all.slice(0, 8);
     grid.innerHTML = shown.map(c => card(c, c.c)).join('');
     more.hidden = shown.length >= all.length;
   };
@@ -122,7 +122,7 @@
     const open = e.target.closest('.open'); if (!open) return;
     const el = open.closest('.card');
     const x = cakes.find(c => c.t === el.dataset.t); lastFocus = open;
-    modal.innerHTML = `<div class="m-box"><button class="m-close" type="button" aria-label="Close">×</button><img src="${x.src}" alt="${x.a}"><div class="m-info"><p class="label">${x.c}</p><h2>${x.t}</h2><p>${x.d}</p><a class="btn" href="#contact" data-close>Inquire About This Design</a></div></div>`;
+    modal.innerHTML = `<div class="m-box"><button class="m-close" type="button" aria-label="Close">Ã—</button><img src="${x.src}" alt="${x.a}"><div class="m-info"><p class="label">${x.c}</p><h2>${x.t}</h2><p>${x.d}</p><a class="btn" href="#contact" data-close>Inquire About This Design</a></div></div>`;
     modal.hidden = false; document.body.classList.add('lock'); $('.m-close', modal).focus();
   });
   modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('.m-close') || e.target.closest('[data-close]')) closeModal(); });
