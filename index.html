@@ -1,4 +1,4 @@
-<!doctype html>
+;ttt <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -24,53 +24,41 @@
   <div id="preloader" role="status" aria-label="Loading"><span id="pre-text">BQ</span></div>
 
   <header id="header">
-    <a href="#top" class="logo" aria-label="Buttercream Queen home"><span class="mono">BQ</span><span class="logo-text">BUTTERCREAM QUEEN</span></a>
+    <a href="#top" class="logo" aria-label="Butter Cream Queen Ghana home"><svg class="crown" viewBox="0 0 24 14" width="22" height="13" aria-hidden="true" fill="currentColor"><path d="M2 13 0 3l6 4 6-7 6 7 6-4-2 10z"/></svg><span class="wordmark">Butter Cream Queen Ghana</span></a>
     <nav id="nav" aria-label="Primary">
-      <a href="#cakes">Cakes</a><a href="#weddings">Weddings</a><a href="#destination">Destination</a><a href="#about">Our Story</a><a href="#contact">Contact</a>
+      <a href="#top">Home</a><a href="#cakes">Our Cakes</a><a href="#classes">Classes</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="inquire">Reserve a Cake</a>
+    <a href="#contact" class="inquire">Order a Cake <span aria-hidden="true">&rarr;</span></a>
     <button id="cart-btn" class="cart-btn" type="button" aria-label="Open my order list" aria-controls="cart" aria-expanded="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-label">My Order</span> <span id="cart-count">0</span></button>
     <button id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu</button>
   </header>
 
   <main id="top">
     <section class="hero">
-      <span class="spark" style="left:18%;top:30%"></span><span class="spark" style="left:60%;top:24%;animation-delay:.8s"></span><span class="spark" style="left:84%;top:70%;animation-delay:1.6s"></span><span class="spark" style="left:38%;top:82%;animation-delay:2.2s"></span>
-      <span class="pearl" style="left:8%;top:22%"></span><span class="pearl" style="left:52%;top:16%"></span>
-      <span class="pearl" style="left:46%;top:78%"></span><span class="pearl" style="left:92%;top:60%"></span>
+      <div class="hero-photo"><img src="assets/hero.jpg" alt="Three-tier cake dressed with blush and ivory flowers" width="1400" height="1750" fetchpriority="high" /></div>
+      <span class="spark" style="left:46%;top:30%"></span><span class="spark" style="left:60%;top:20%;animation-delay:.8s"></span><span class="spark" style="left:84%;top:66%;animation-delay:1.6s"></span>
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="label">Luxury Cake Design House</p>
-          <h1>Warm. Buttery. <em>Yours.</em></h1>
-          <p class="lead">Hand-finished cakes and florals for the moments you never want to forget.</p>
-          <div class="cta-row"><a class="btn" href="#contact">Reserve a Cake</a><a class="btn outline" href="#picks">See Baker's Picks</a></div>
-          <ul class="hero-points" aria-label="Highlights">
-            <li>Award-winning designer</li>
-            <li>Cake florist</li>
-            <li>Destination celebrations</li>
-          </ul>
-        </div>
-        <div class="hero-visual">
-          <div class="featured-card">
-            <img src="assets/hero.jpg" alt="Three-tier cake dressed with blush and ivory flowers" width="1400" height="1750" fetchpriority="high" />
-            <div class="floating-note"><span>Signature</span><strong>Floral couture cake</strong></div>
-          </div>
+          <span class="hero-rule"></span>
+          <h1>Extraordinary cakes. Unforgettable celebrations.</h1>
+          <p class="lead">Luxury cake artistry and inspiring classes in Ghana.</p>
+          <div class="cta-row"><a class="btn" href="#contact">Order a Cake <span aria-hidden="true">&rarr;</span></a><a class="btn outline" href="#classes">Explore Classes</a></div>
         </div>
       </div>
     </section>
 
-    <section class="wrap section intro">
-      <p class="label">The House</p>
-      <h2 class="big reveal">Bite into bliss.</h2>
-      <p class="lead reveal">Sculpted. Styled. Sweet. Every cake is made to be admired, then devoured.</p>
+    <p class="tagline reveal"><span>Made with artistry. Created with love.</span></p>
+
+    <section class="wrap tiles" aria-label="Explore">
+      <a class="tile" href="#cakes" data-cat="Wedding Cakes"><img src="assets/cakes/wedding-1.jpg" alt="Tall tiered wedding cake with flowers" width="600" height="450" loading="lazy" /><span class="tile-bar">Wedding Cakes <i aria-hidden="true">&rarr;</i></span></a>
+      <a class="tile" href="#cakes" data-cat="Luxury Celebration Cakes"><img src="assets/cakes/celebration-1.jpg" alt="Pink celebration cake" width="600" height="450" loading="lazy" /><span class="tile-bar">Celebration Cakes <i aria-hidden="true">&rarr;</i></span></a>
+      <a class="tile" href="#classes"><img class="tile-person" src="assets/georgina-bart-williams.png" alt="Georgina in her chef whites" width="600" height="450" loading="lazy" /><span class="tile-bar">Cake Masterclasses <i aria-hidden="true">&rarr;</i></span></a>
     </section>
 
-    <section class="wrap feature-band" aria-label="What defines the house">
-      <div class="stats-grid reveal">
-        <div class="stat-block"><strong>Silky</strong><span>Buttercream</span></div>
-        <div class="stat-block"><strong>Fresh</strong><span>Real flowers</span></div>
-        <div class="stat-block"><strong>Anywhere</strong><span>We travel for cake</span></div>
-        <div class="stat-block"><strong>Yours</strong><span>Made to order</span></div>
+    <section id="classes" class="classes-band">
+      <div class="wrap classes-inner">
+        <div><h2>Learn the art of exceptional cakes</h2><p>Practical skills. Creative techniques. Beautiful results.</p></div>
+        <a class="btn" href="https://wa.me/233244834478?text=Hello%2C%20I%27d%20like%20to%20know%20about%20your%20cake%20classes." target="_blank" rel="noopener noreferrer">Discover Our Classes <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
 

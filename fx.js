@@ -75,10 +75,10 @@ void main(){
     if (reduced) { $$('.uline').forEach(u => u.style.transform = 'none'); return; }
 
     animate($$('.hero-copy > *'), { opacity: [0, 1], y: [28, 0] }, { delay: stagger(.12, { startDelay: .5 }), duration: .8, ease: [.22, 1, .36, 1] });
-    animate('.featured-card', { opacity: [0, 1] }, { delay: .6, duration: 1 });
+    animate('.hero-photo', { opacity: [0, 1] }, { delay: .3, duration: 1.2 });
 
-    const heroImg = $('.featured-card img');
-    if (heroImg && hero) scroll(animate(heroImg, { y: [0, 70], scale: [1.08, 1.18] }, { ease: 'linear' }), { target: hero, offset: ['start start', 'end start'] });
+    const heroImg = $('.hero-photo img');
+    if (heroImg && hero) scroll(animate(heroImg, { y: [0, 60], scale: [1.02, 1.1] }, { ease: 'linear' }), { target: hero, offset: ['start start', 'end start'] });
 
     $$('.stat-block').forEach(el => { el.style.opacity = 0; });
     const stats = $('.stats-grid');

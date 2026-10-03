@@ -136,6 +136,11 @@
     }
   });
 
+  // homepage tiles pre-select a category
+  $$('.tile[data-cat]').forEach(t => t.addEventListener('click', () => {
+    const b = $(`button[data-c="${t.dataset.cat}"]`, filters); if (b) b.click();
+  }));
+
   // order list (mini cart)
   const WA = '233244834478', KEY = 'bq-order';
   let order = []; try { order = JSON.parse(localStorage.getItem(KEY)) || []; } catch (_) { }
