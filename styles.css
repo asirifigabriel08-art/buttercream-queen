@@ -312,3 +312,5 @@ footer p{color:#f3e2c8}
 @keyframes bounce{0%,88%,100%{transform:translateY(0)}92%{transform:translateY(-6px)}96%{transform:translateY(0)}98%{transform:translateY(-3px)}}
 
 .cart-btn .cart-label{background:none;min-width:0;height:auto;border-radius:0;font-size:inherit;color:inherit}
+
+.cart-btn{white-space:nowrap}
