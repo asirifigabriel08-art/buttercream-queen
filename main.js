@@ -94,7 +94,7 @@
     if (cat !== curCat) expanded = false;
     curCat = cat;
     const all = cakes.filter(c => cat === 'All' || c.c === cat);
-    const shown = mobile.matches && !expanded ? all.slice(0, 6) : all;
+    const shown = expanded ? all : all.slice(0, mobile.matches ? 6 : 8);
     grid.innerHTML = shown.map(c => card(c, c.c)).join('');
     more.hidden = shown.length >= all.length;
   };
