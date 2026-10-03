@@ -174,7 +174,7 @@
 
   // class booking form -> WhatsApp
   // Paste the owner's CallMeBot API key below to send bookings automatically.
-  const AUTO = { phone: '233244834478', apikey: '' };
+  const AUTO = { phone: '233244834478', apikey: '', web3formsKey: '' };
   const bmodal = $('#book-modal'), bform = $('#book-form'), bstatus = $('#book-status');
   const setBook = open => { bmodal.hidden = !open; if (open) { bmodal.scrollTop = 0; bstatus.textContent = ''; } };
   document.addEventListener('click', e => {
@@ -206,6 +206,13 @@
       window.open(`https://wa.me/${AUTO.phone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
       bstatus.textContent = 'WhatsApp is opening with your details. Press Send there to finish your booking.';
     };
+    if (AUTO.web3formsKey) {
+      done.disabled = true; done.textContent = 'Sending...';
+      fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ access_key: AUTO.web3formsKey, subject: `New class booking: ${v('class')}`, from_name: 'Buttercream Queen website', name: v('name'), phone: v('phone'), email: v('email') || undefined, message: text }) })
+        .then(r => r.json()).then(j => { if (j.success) success(); else viaWhatsApp(); }).catch(viaWhatsApp)
+        .finally(() => { done.disabled = false; done.textContent = 'Done'; });
+      return;
+    }
     if (!AUTO.apikey) { viaWhatsApp(); return; }
     done.disabled = true; done.textContent = 'Sending...';
     fetch(`https://api.callmebot.com/whatsapp.php?phone=${AUTO.phone}&text=${encodeURIComponent(text)}&apikey=${AUTO.apikey}`, { mode: 'no-cors' })
