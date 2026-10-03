@@ -152,3 +152,36 @@ footer p{color:#f3d8e0}
 #preloader.done{opacity:0;visibility:hidden}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
 @media(max-width:520px){.awards li{grid-template-columns:3.5rem 1fr}.awards i{grid-column:2}}
+
+/* premium refinements */
+:root{--gold:#b8924f;--gold2:#e3c98f}
+body{background:linear-gradient(180deg,#f9e8ee,#f6dfe6 40%,#f9e8ee)}
+::selection{background:var(--gold2);color:var(--deep)}
+.label{color:var(--gold);letter-spacing:.3em}
+.label::before{content:"";display:inline-block;width:2rem;height:1px;background:var(--gold);vertical-align:middle;margin-right:.8rem}
+.center .label::before,.intro .label::before{display:none}
+h1,h2{letter-spacing:-.01em}
+.btn{background:linear-gradient(135deg,#4a2733,#6b3447);border-color:transparent;box-shadow:0 10px 24px -12px rgba(74,39,51,.6)}
+.btn:hover{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--deep);transform:translateY(-2px)}
+.btn.outline{background:transparent;border-color:var(--gold);color:var(--deep);box-shadow:none}
+.btn.outline:hover{background:var(--deep);border-color:var(--deep);color:#fff}
+.btn.wa{background:linear-gradient(135deg,#1fa855,#128c7e);color:#fff}
+.btn.wa:hover{background:linear-gradient(135deg,#25d366,#1fa855);color:#fff}
+.mono{border-color:var(--gold)}
+.featured-card{border:8px solid #fff;outline:1px solid var(--gold);outline-offset:6px}
+.photo{outline:1px solid var(--gold);outline-offset:6px}
+.card{border-color:rgba(184,146,79,.35)}
+.card:hover{box-shadow:0 30px 50px -24px rgba(74,39,51,.45)}
+.card .tag,.awards b{color:var(--gold)}
+.stats-grid{border-color:rgba(184,146,79,.4);background:rgba(184,146,79,.4)}
+.finale{background:radial-gradient(circle at 20% 0,rgba(227,201,143,.25),transparent 50%),linear-gradient(160deg,#3a1d27,#7a3b50)}
+.ig-cta{text-align:center;margin-top:3rem;padding:2.2rem 1rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ig-cta p{font:italic 400 1.3rem var(--serif);color:var(--deep);margin-bottom:1rem}
+.social{display:flex;justify-content:center;gap:1.6rem;margin:1rem 0}
+.social a{color:var(--gold2);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid transparent;transition:.3s}
+.social a:hover{color:#fff;border-color:var(--gold2)}
+footer{background:linear-gradient(180deg,#3a1d27,#2a1219)}
+.wa-float{position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;width:3.6rem;height:3.6rem;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;box-shadow:0 12px 28px -8px rgba(18,140,126,.7);transition:transform .3s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{to{transform:scale(1.5);opacity:0}}
